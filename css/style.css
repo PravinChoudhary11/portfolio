@@ -1723,8 +1723,73 @@ figure.dotted-bg:before {
 }
 
 .project-detail-cover {
-  padding: 150px 0 50px;
+  padding: 120px 0 50px;
   background: radial-gradient(circle at 85% 15%, rgba(214, 52, 71, 0.25), rgba(214, 52, 71, 0) 35%);
+}
+
+.project-detail-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.project-detail-topbar-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: 16px;
+}
+
+.project-back-link {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #151515;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.project-back-link:hover {
+  border-color: rgba(214, 52, 71, 0.7);
+  color: #D63447;
+}
+
+.project-back-arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.project-detail-brand {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  color: #000;
+  letter-spacing: .01em;
+}
+
+.project-detail-brand span {
+  color: #D63447;
 }
 
 .project-detail-page .unslate_co--site-inner {
@@ -1814,11 +1879,39 @@ figure.dotted-bg:before {
 
 @media (max-width: 991.98px) {
   .project-detail-cover {
-    padding: 120px 0 40px;
+    padding: 96px 0 40px;
   }
 
   .project-detail-title {
     font-size: 34px;
+  }
+
+  .project-detail-brand {
+    font-size: 24px;
+  }
+
+  .project-back-link {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .project-detail-topbar-inner {
+    min-height: 62px;
+  }
+
+  .project-detail-brand {
+    font-size: 22px;
+  }
+
+  .project-back-link span:last-child {
+    display: inline;
+  }
+
+  .project-back-link {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
 
@@ -1978,6 +2071,219 @@ figure.dotted-bg:before {
 .testimonial-v1 .testimonial-author-info .position {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile polish for full site */
+@media (max-width: 991.98px) {
+  .cover-v1 .container,
+  .cover-v1 .container > .row {
+    height: auto;
+    min-height: 0;
+  }
+
+  #home-section .container {
+    padding-top: 120px;
+    padding-bottom: 36px;
+  }
+
+  .cover-v1 .subheading {
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .mouse-wrap {
+    display: none;
+  }
+
+  .section-heading-wrap {
+    margin-bottom: 2rem !important;
+  }
+
+  .feature-v1 {
+    text-align: left;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cover-v1 .heading {
+    font-size: 2.2rem;
+  }
+
+  .cover-v1 .subheading {
+    font-size: 17px;
+  }
+
+  .cover-v1 .hero-image {
+    max-width: 280px;
+    max-height: 52vh;
+  }
+
+  .heading-h2 {
+    font-size: 1.9rem;
+  }
+
+  .project-card-body {
+    padding: 14px 14px 16px;
+  }
+
+  .project-card-body h3 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .project-card-desc {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .project-card-stack {
+    font-size: 12px;
+  }
+
+  .certificate-card {
+    padding: 16px;
+  }
+
+  .certificate-card h3 {
+    font-size: 18px;
+  }
+
+  .certificate-card p {
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+
+  .certificate-preview {
+    height: 150px;
+    margin-bottom: 12px;
+  }
+
+  .skills-modern-panel {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .skills-panel-title {
+    font-size: 19px;
+  }
+
+  .skills-chip {
+    font-size: 11px;
+    padding: 7px 11px;
+  }
+
+  .skill-progress-item {
+    min-height: 78px;
+    padding: 10px;
+  }
+
+  .skill-progress-head {
+    font-size: 12px;
+  }
+
+  .project-detail-title {
+    font-size: 28px;
+  }
+
+  .project-detail-panel {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .project-detail-panel h3 {
+    font-size: 19px;
+  }
+
+  .project-detail-panel p,
+  .project-facts,
+  .project-learnings {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .contact-info-v1 {
+    margin-top: 28px;
+  }
+
+  #contactForm .btn {
+    width: 100%;
+    margin-right: 0 !important;
+  }
+
+  #education-section .feature-v1 {
+    text-align: left;
+    line-height: 1.6;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    height: 100%;
+  }
+
+  #education-section .feature-v1 .wrap-icon {
+    margin-bottom: 12px !important;
+  }
+
+  #education-section .feature-v1 h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+
+  #education-section .feature-v1 p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  #education-section .edu-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 20px;
+    -webkit-box-shadow: 0 8px 18px rgba(214, 52, 71, 0.18);
+    box-shadow: 0 8px 18px rgba(214, 52, 71, 0.18);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .unslate_co--site-nav .unslate_co--site-logo {
+    font-size: 34px;
+  }
+
+  #home-section .container {
+    padding-top: 106px;
+    padding-bottom: 24px;
+  }
+
+  .cover-v1 .heading {
+    font-size: 1.9rem;
+  }
+
+  .cover-v1 .hero-image {
+    max-width: 240px;
+  }
+
+  .project-detail-topbar-inner {
+    min-height: 58px;
+  }
+
+  .project-back-link {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+
+  .project-detail-brand {
+    font-size: 20px;
+  }
+
+  .certificate-actions .btn {
+    width: 100%;
+    text-align: center;
+    padding: 9px 14px;
+  }
+
+  .skills-progress-list {
+    gap: 10px;
+  }
 }
 
 .testimonial-slider .owl-stage, .single-slider .owl-stage {

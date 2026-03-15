@@ -594,38 +594,75 @@ var contactForm = function() {
 			/* submit via ajax */
 			submitHandler: function(form) {		
 				var $submit = $('.submitting'),
-					waitText = 'Submitting...';
+					waitText = 'Submitting...',
+					isNetlify = $(form).attr('data-netlify') === 'true',
+					fallbackEmail = 'mail.pravinchoudhary@gmail.com',
+					showFallbackMessage = function() {
+						var name = $(form).find('input[name="name"]').val() || '';
+						var fromEmail = $(form).find('input[name="email"]').val() || '';
+						var userMessage = $(form).find('textarea[name="message"]').val() || '';
+						var mailSubject = encodeURIComponent('Portfolio Contact Form Message');
+						var mailBody = encodeURIComponent(
+							'Name: ' + name + '\n' +
+							'Email: ' + fromEmail + '\n\n' +
+							'Message:\n' + userMessage
+						);
+						var mailtoHref = 'mailto:' + fallbackEmail + '?subject=' + mailSubject + '&body=' + mailBody;
+
+						$('#form-message-warning').html('Submit failed. Please <a href="' + mailtoHref + '">send this message directly by email</a>.');
+						$('#form-message-warning').fadeIn();
+						$submit.css('display', 'none');
+					},
+					requestUrl = isNetlify ? '/' : 'php/send-email.php',
+					onSuccess = function() {
+						$('#form-message-warning').hide();
+						setTimeout(function(){
+							$('#contactForm').fadeOut();
+						}, 500);
+						setTimeout(function(){
+							$('#form-message-success').fadeIn();
+						}, 900);
+						$submit.css('display', 'none');
+					};
+
+				$submit.css('display', 'block').text(waitText);
+
+				if (isNetlify) {
+					fetch(requestUrl, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: $(form).serialize()
+					})
+					.then(function(response) {
+						if (!response.ok) {
+							throw new Error('Netlify form submit failed');
+						}
+						onSuccess();
+					})
+					.catch(function() {
+						showFallbackMessage();
+					});
+
+					return;
+				}
 
 				$.ajax({   	
 			      type: "POST",
-			      url: "php/send-email.php",
+			      url: requestUrl,
 			      data: $(form).serialize(),
-
-			      beforeSend: function() { 
-			      	$submit.css('display', 'block').text(waitText);
-			      },
 			      success: function(msg) {
-	               if (msg == 'OK') {
-	               	$('#form-message-warning').hide();
-			            setTimeout(function(){
-	               		$('#contactForm').fadeOut();
-	               	}, 1000);
-			            setTimeout(function(){
-			               $('#form-message-success').fadeIn();   
-	               	}, 1400);
-		               
-		            } else {
-		               $('#form-message-warning').html(msg);
+			      	if (msg == 'OK') {
+			      		onSuccess();
+			        } else {
+			               $('#form-message-warning').html(msg);
 			            $('#form-message-warning').fadeIn();
 			            $submit.css('display', 'none');
-		            }
+			        }
 			      },
 			      error: function() {
-			      	$('#form-message-warning').html("Something went wrong. Please try again.");
-			         $('#form-message-warning').fadeIn();
-			         $submit.css('display', 'none');
+			      	showFallbackMessage();
 			      }
-		      });    		
+			      });    		
 	  		}
 			
 		} );

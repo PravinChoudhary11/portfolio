@@ -9,7 +9,11 @@
           <div class="row justify-content-between">
             
             <div class="col-md-6">
-              <form method="post" class="form-outline-style-v1" id="contactForm">
+              <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" class="form-outline-style-v1" id="contactForm">
+                <input type="hidden" name="form-name" value="contact">
+                <p class="d-none">
+                  <label>Do not fill this out if you're human: <input name="bot-field"></label>
+                </p>
                 <div class="form-group row mb-0">
 
                   <div class="col-lg-6 form-group gsap-reveal">
