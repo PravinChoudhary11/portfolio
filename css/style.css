@@ -801,19 +801,34 @@ a, a:hover {
 }
 
 .cover-v1 .hero-image {
-  width: 100%;
-  max-width: 500px;
-  max-height: 78vh;
-  height: auto;
-  display: inline-block;
+  width: 76%;
+  height: 76%;
+  display: block;
+  padding: 0;
+  margin: auto;
+  box-sizing: border-box;
   -o-object-fit: contain;
   object-fit: contain;
-  -o-object-position: bottom right;
-  object-position: bottom right;
+  -o-object-position: center 50%;
+  object-position: center 50%;
 }
 
 .cover-v1 .hero-image-wrap {
-  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: clamp(250px, 29vw, 420px);
+  aspect-ratio: 1 / 1;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01) 55%, rgba(255, 255, 255, 0) 72%);
 }
 
 @media (max-width: 991.98px) {
@@ -836,9 +851,15 @@ a, a:hover {
   }
 
   .cover-v1 .hero-image {
+    padding: 0;
+    width: 74%;
+    height: 74%;
+  }
+
+  .cover-v1 .hero-image-wrap {
+    width: clamp(190px, 60vw, 290px);
     margin-top: 16px;
-    max-width: 360px;
-    max-height: 46vh;
+    border-width: 1.5px;
   }
 
   .cover-v1 .subheading {
@@ -1222,24 +1243,28 @@ figure.dotted-bg {
 }
 
 figure.dotted-bg.about-figure {
-  max-width: 560px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 figure.dotted-bg .about-photo {
   width: 100%;
-  max-width: 560px;
+  max-width: 400px;
   height: auto;
   display: block;
 }
 
 @media (max-width: 991.98px) {
   figure.dotted-bg.about-figure {
-    max-width: 100%;
+    max-width: 320px;
   }
 
   figure.dotted-bg .about-photo {
-    width: 100%;
-    max-width: 100%;
+    width: 90%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
