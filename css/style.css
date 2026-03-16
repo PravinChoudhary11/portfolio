@@ -1577,6 +1577,19 @@ figure.dotted-bg:before {
   font-weight: 700;
 }
 
+.skills-category-block {
+  margin-bottom: 20px;
+}
+
+.skills-category-title {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .skills-summary-text {
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.75;
