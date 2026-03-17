@@ -20,7 +20,6 @@ jQuery(function($) {
 	counter();
 	skillsProgressAnimation();
 	jarallaxPlugin();
-	contactForm();
 	stickyFillPlugin();
 	animateReveal();
 
@@ -568,82 +567,6 @@ var jarallaxPlugin = function() {
     videoStartTime: 8,
     videoEndTime: 70,
 	});
-};
-
-var contactForm = function() {
-	if ($('#contactForm').length > 0 ) {
-		$( "#contactForm" ).validate( {
-			rules: {
-				name: "required",
-				email: {
-					required: true,
-					email: true
-				},
-				message: {
-					required: true,
-					minlength: 5
-				}
-			},
-			messages: {
-				name: "Please enter your name",
-				email: "Please enter a valid email address",
-				message: "Please enter a message"
-			},
-			errorElement: 'span',
-			errorLabelContainer: '.form-error',
-			/* submit via ajax */
-			submitHandler: function(form) {		
-				var $submit = $('.submitting'),
-					waitText = 'Submitting...',
-					fallbackEmail = 'mail.pravinchoudhary@gmail.com',
-					showFallbackMessage = function() {
-						var name = $(form).find('input[name="name"]').val() || '';
-						var fromEmail = $(form).find('input[name="email"]').val() || '';
-						var userMessage = $(form).find('textarea[name="message"]').val() || '';
-						var mailSubject = encodeURIComponent('Portfolio Contact Form Message');
-						var mailBody = encodeURIComponent(
-							'Name: ' + name + '\n' +
-							'Email: ' + fromEmail + '\n\n' +
-							'Message:\n' + userMessage
-						);
-						var mailtoHref = 'mailto:' + fallbackEmail + '?subject=' + mailSubject + '&body=' + mailBody;
-
-						$('#form-message-warning').html('Submit failed. Please <a href="' + mailtoHref + '">send this message directly by email</a>.');
-						$('#form-message-warning').fadeIn();
-						$submit.css('display', 'none');
-					},
-					requestUrl = '/',
-					onSuccess = function() {
-						$('#form-message-warning').hide();
-						setTimeout(function(){
-							$('#contactForm').fadeOut();
-						}, 500);
-						setTimeout(function(){
-							$('#form-message-success').fadeIn();
-						}, 900);
-						$submit.css('display', 'none');
-					};
-
-				$submit.css('display', 'block').text(waitText);
-
-				fetch(requestUrl, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-					body: $(form).serialize()
-				})
-				.then(function(response) {
-					if (!response.ok) {
-						throw new Error('Form submit failed');
-					}
-					onSuccess();
-				})
-				.catch(function() {
-					showFallbackMessage();
-				});
-	  		}
-			
-		} );
-	}
 };
 
 var stickyFillPlugin = function() {
