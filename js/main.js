@@ -595,7 +595,6 @@ var contactForm = function() {
 			submitHandler: function(form) {		
 				var $submit = $('.submitting'),
 					waitText = 'Submitting...',
-					isNetlify = $(form).attr('data-netlify') === 'true',
 					fallbackEmail = 'mail.pravinchoudhary@gmail.com',
 					showFallbackMessage = function() {
 						var name = $(form).find('input[name="name"]').val() || '';
@@ -613,7 +612,7 @@ var contactForm = function() {
 						$('#form-message-warning').fadeIn();
 						$submit.css('display', 'none');
 					},
-					requestUrl = isNetlify ? '/' : 'php/send-email.php',
+					requestUrl = '/',
 					onSuccess = function() {
 						$('#form-message-warning').hide();
 						setTimeout(function(){
@@ -627,42 +626,20 @@ var contactForm = function() {
 
 				$submit.css('display', 'block').text(waitText);
 
-				if (isNetlify) {
-					fetch(requestUrl, {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-						body: $(form).serialize()
-					})
-					.then(function(response) {
-						if (!response.ok) {
-							throw new Error('Netlify form submit failed');
-						}
-						onSuccess();
-					})
-					.catch(function() {
-						showFallbackMessage();
-					});
-
-					return;
-				}
-
-				$.ajax({   	
-			      type: "POST",
-			      url: requestUrl,
-			      data: $(form).serialize(),
-			      success: function(msg) {
-			      	if (msg == 'OK') {
-			      		onSuccess();
-			        } else {
-			               $('#form-message-warning').html(msg);
-			            $('#form-message-warning').fadeIn();
-			            $submit.css('display', 'none');
-			        }
-			      },
-			      error: function() {
-			      	showFallbackMessage();
-			      }
-			      });    		
+				fetch(requestUrl, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+					body: $(form).serialize()
+				})
+				.then(function(response) {
+					if (!response.ok) {
+						throw new Error('Form submit failed');
+					}
+					onSuccess();
+				})
+				.catch(function() {
+					showFallbackMessage();
+				});
 	  		}
 			
 		} );
