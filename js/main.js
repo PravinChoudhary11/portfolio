@@ -20,6 +20,7 @@ jQuery(function($) {
 	counter();
 	skillsProgressAnimation();
 	jarallaxPlugin();
+	contactFormPopup();
 	stickyFillPlugin();
 	animateReveal();
 
@@ -566,6 +567,68 @@ var jarallaxPlugin = function() {
     videoSrc: 'https://www.youtube.com/watch?v=mwtbEGNABWU',
     videoStartTime: 8,
     videoEndTime: 70,
+	});
+};
+
+var contactFormPopup = function() {
+	var $form = $('#contactForm');
+	if (!$form.length) {
+		return;
+	}
+
+	var $popup = $('#contact-submit-popup');
+	var hidePopupTimer;
+
+	var showPopup = function(message, isError) {
+		if (!$popup.length) {
+			window.alert(message);
+			return;
+		}
+
+		window.clearTimeout(hidePopupTimer);
+		$popup.removeClass('is-error').text(message);
+		if (isError) {
+			$popup.addClass('is-error');
+		}
+		$popup.addClass('is-visible');
+
+		hidePopupTimer = window.setTimeout(function() {
+			$popup.removeClass('is-visible');
+		}, 4500);
+	};
+
+	$form.on('submit', function(e) {
+		e.preventDefault();
+
+		var form = this;
+		if (form.checkValidity && !form.checkValidity()) {
+			form.reportValidity();
+			return;
+		}
+
+		var $submitBtn = $form.find('input[type="submit"]');
+		var defaultLabel = $submitBtn.val();
+
+		$submitBtn.prop('disabled', true).val('Sending...');
+
+		fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: new URLSearchParams(new FormData(form)).toString()
+		})
+		.then(function(response) {
+			if (!response.ok) {
+				throw new Error('Form submit failed');
+			}
+			form.reset();
+			showPopup('Your message has been forwarded. The owner will contact you soon.', false);
+		})
+		.catch(function() {
+			showPopup('Could not send your message right now. Please try again in a moment.', true);
+		})
+		.finally(function() {
+			$submitBtn.prop('disabled', false).val(defaultLabel);
+		});
 	});
 };
 
