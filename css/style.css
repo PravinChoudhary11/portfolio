@@ -2879,6 +2879,10 @@ figure.dotted-bg:before {
   .contact-info-v1 {
     text-align: center;
   }
+
+  .contact-info-v1 .contact-links-block {
+    display: none !important;
+  }
 }
 
 .contact-info-v1 > div {
