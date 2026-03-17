@@ -2293,7 +2293,7 @@ figure.dotted-bg:before {
     justify-content: center;
     text-align: center;
     padding: 12px;
-    background: #0d1118 url("../images/certificate-img.png") center center/cover no-repeat;
+    background: #0d1118 url("../images/certificate-img.webp") center center/cover no-repeat;
   }
 
   .certificate-preview-frame {
@@ -2305,7 +2305,7 @@ figure.dotted-bg:before {
   }
 
   html.light-theme .certificate-preview {
-    background: #eaf0f7 url("../images/certificate-img.png") center center/cover no-repeat;
+    background: #eaf0f7 url("../images/certificate-img.webp") center center/cover no-repeat;
     border-color: rgba(16, 39, 68, 0.2);
   }
 }
@@ -4181,9 +4181,24 @@ html.light-theme .gsap-reveal-img .reveal-wrap .cover {
   #journal-section .certificate-preview,
   html.light-theme #journal-section .certificate-preview,
   html:not(.light-theme) #journal-section .certificate-preview {
-    background-image: url("../images/certificate-img.png") !important;
+    background-image: image-set(
+      url("../images/certificate-img.webp") type("image/webp"),
+      url("../images/certificate-img.png") type("image/png")
+    ) !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+  }
+}
+
+@supports (content-visibility: auto) {
+  #about-section,
+  #skills-section,
+  #portfolio-section,
+  #journal-section,
+  #education-section,
+  #contact-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
   }
 }
