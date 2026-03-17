@@ -35,7 +35,14 @@
                     </div>
                   </div>
               </form>
-              <div id="contact-submit-popup" class="contact-submit-popup" aria-live="polite" role="status"></div>
+              <div id="contact-submit-popup" class="contact-submit-modal" aria-hidden="true">
+                <div class="contact-submit-modal__backdrop" data-close-contact-popup></div>
+                <div class="contact-submit-modal__dialog" role="alertdialog" aria-modal="true" aria-labelledby="contact-submit-popup-title">
+                  <button type="button" class="contact-submit-modal__close" aria-label="Close" data-close-contact-popup>&times;</button>
+                  <h3 id="contact-submit-popup-title">Message Status</h3>
+                  <p id="contact-submit-popup-message" class="contact-submit-modal__message" aria-live="polite"></p>
+                </div>
+              </div>
 
             </div>
 

@@ -576,26 +576,41 @@ var contactFormPopup = function() {
 		return;
 	}
 
-	var $popup = $('#contact-submit-popup');
-	var hidePopupTimer;
+	var $modal = $('#contact-submit-popup');
+	var $modalMessage = $('#contact-submit-popup-message');
+	var closePopupTimer;
+
+	if (!$modal.length || !$modalMessage.length) {
+		return;
+	}
+
+	var closePopup = function() {
+		window.clearTimeout(closePopupTimer);
+		$modal.removeClass('is-visible is-success is-error').attr('aria-hidden', 'true');
+		$('body').removeClass('contact-modal-open');
+	};
 
 	var showPopup = function(message, isError) {
-		if (!$popup.length) {
-			window.alert(message);
-			return;
-		}
+		window.clearTimeout(closePopupTimer);
+		$modalMessage.text(message);
+		$modal.removeClass('is-success is-error').addClass(isError ? 'is-error' : 'is-success');
+		$modal.addClass('is-visible').attr('aria-hidden', 'false');
+		$('body').addClass('contact-modal-open');
 
-		window.clearTimeout(hidePopupTimer);
-		$popup.removeClass('is-error').text(message);
-		if (isError) {
-			$popup.addClass('is-error');
-		}
-		$popup.addClass('is-visible');
-
-		hidePopupTimer = window.setTimeout(function() {
-			$popup.removeClass('is-visible');
+		closePopupTimer = window.setTimeout(function() {
+			closePopup();
 		}, 4500);
 	};
+
+	$modal.on('click', '[data-close-contact-popup]', function() {
+		closePopup();
+	});
+
+	$(document).on('keydown.contactSubmitPopup', function(e) {
+		if (e.key === 'Escape' && $modal.hasClass('is-visible')) {
+			closePopup();
+		}
+	});
 
 	$form.on('submit', function(e) {
 		e.preventDefault();
