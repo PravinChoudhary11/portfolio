@@ -17,6 +17,16 @@
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/vendor/jquery.fancybox.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("site-theme") !== "dark") {
+            document.documentElement.classList.add("light-theme");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="project-detail-page">
     <div class="unslate_co--site-wrap">
@@ -26,10 +36,16 @@
             <div class="project-detail-topbar-inner">
               <a href="index.html" class="project-detail-brand">Pravin<span>.</span></a>
 
-              <a href="index.html#portfolio-section" class="project-back-link">
-                <span class="project-back-arrow">&larr;</span>
-                <span>Back To Projects</span>
-              </a>
+              <div class="project-topbar-actions">
+                <button type="button" class="theme-toggle-btn js-theme-toggle" aria-label="Toggle color theme" title="Switch theme">
+                  <span class="theme-toggle-icon" aria-hidden="true"></span>
+                </button>
+
+                <a href="index.html#portfolio-section" class="project-back-link">
+                  <span class="project-back-arrow">&larr;</span>
+                  <span>Back To Projects</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -102,6 +118,7 @@
 
     <script src="js/vendor/jquery-3.3.1.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
     <script src="js/project-detail.js"></script>
   </body>
 </html>

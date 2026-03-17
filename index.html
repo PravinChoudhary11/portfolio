@@ -22,6 +22,16 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
 
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("site-theme") !== "dark") {
+            document.documentElement.classList.add("light-theme");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
   </head>
   <body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
 
@@ -73,6 +83,10 @@
                 <li><a href="#contact-section" class="nav-link">Contact</a></li>
               </ul>
 
+              <button type="button" class="theme-toggle-btn js-theme-toggle" aria-label="Toggle color theme" title="Switch theme">
+                <span class="theme-toggle-icon" aria-hidden="true"></span>
+              </button>
+
               <ul class="site-nav-ul-none-onepage text-right d-inline-block d-lg-none">
                 <li><a href="#" class="js-menu-toggle">Menu</a></li>
               </ul>
@@ -94,7 +108,7 @@
 
             <div class="col-lg-6 hero-visual text-center text-lg-right">
               <div class="hero-image-wrap gsap-reveal-hero">
-                <img src="images/auther-hero.png" alt="Pravin Choudhary" class="img-fluid hero-image" loading="eager" decoding="async" fetchpriority="high">
+                <img src="images/auther-hero.png" alt="Pravin Choudhary" class="img-fluid hero-image" loading="eager" decoding="async" fetchpriority="high" width="700" height="1050">
               </div>
             </div>
 
@@ -162,6 +176,7 @@
       <input name="bot-field">
     </form>
 
+    <script src="js/theme.js"></script>
     <script src="js/section-loader.js"></script>
 
   </body>
