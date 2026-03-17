@@ -1,5 +1,5 @@
 AOS.init({
- 	duration: 800,
+	duration: 700,
  	easing: 'ease',
  	once: true,
  	offset: -100
@@ -84,13 +84,13 @@ var siteIstotope = function() {
 
 					tl2
 						tl2.set(img, {  scale: '2.0', autoAlpha: 1, })
-						.to(cover, 1, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
+						.to(cover, 0.85, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
 							tl2.set(revealContent, { autoAlpha: 1 });
-							tl2.to(cover, 1, { marginLeft: '102%', ease:Expo.easeInOut });
-							tl2.to(img, 2, { scale: '1.0', ease:Expo.easeOut }, '-=1.5');
+							tl2.to(cover, 0.85, { marginLeft: '102%', ease:Expo.easeInOut });
+							tl2.to(img, 1.6, { scale: '1.0', ease:Expo.easeOut }, '-=1.2');
 						} } )
 
-				}, i * 700);
+				}, i * 560);
 
 				
 
@@ -118,7 +118,7 @@ var siteIstotope = function() {
 
 var loader = function() {
 	setTimeout(function() {
-		TweenMax.to('.site-loader-wrap', 1, { marginTop: 50, autoAlpha: 0, ease: Power4.easeInOut });
+		TweenMax.to('.site-loader-wrap', 0.85, { marginTop: 50, autoAlpha: 0, ease: Power4.easeInOut });
   }, 10);
   $(".site-loader-wrap").delay(200).fadeOut("slow");
 	$("#unslate_co--overlayer").delay(200).fadeOut("slow");	
@@ -153,7 +153,7 @@ var siteMenuClone = function() {
 
     });
 
-  }, 1000);
+	}, 850);
 
 	$('body').on('click', '.arrow-collapse', function(e) {
     var $this = $(this);
@@ -208,7 +208,7 @@ var owlCarouselPlugin = function() {
     loop: true,
     stagePadding: 20,
   	margin: 10,
-    smartSpeed: 2000,
+		smartSpeed: 1700,
     autoplay: true,
     autoplayHoverPause: true,
     dots: true,
@@ -235,7 +235,7 @@ var owlCarouselPlugin = function() {
 	    loop: true,
 	    stagePadding: 0,
 	    margin: 0,
-	    smartSpeed: 1000,
+	    smartSpeed: 850,
 	    autoplay: true,
 	    autoplayHoverPause: true,
 	    dots: false,
@@ -264,7 +264,7 @@ var owlSingleSlider = function () {
 	    loop: true,
 	    stagePadding: 0,
 	    margin: 0,
-	    smartSpeed: 1500,
+	    smartSpeed: 1300,
 	    autoplay: true,
 	    autoplayHoverPause: true,
 	    dots: true,
@@ -366,7 +366,7 @@ var counter = function() {
 				  }, 
 				  {
 				  	easing: 'swing',
-    				duration: 3000
+					duration: 2500
 				  }
 				);
 			});
@@ -402,7 +402,7 @@ var skillsProgressAnimation = function() {
 
 				setTimeout(function() {
 					$bar.css('width', target);
-				}, 120 + (index * 90));
+				}, 100 + (index * 75));
 			});
 		}
 	}, { offset: '75%' });
@@ -464,7 +464,7 @@ var onePageNavigation = function() {
     
       $('html, body').animate({
         scrollTop: $(hash).offset().top
-      }, 1000, 'easeInOutExpo');
+		}, 850, 'easeInOutExpo');
 
   });
 
@@ -482,16 +482,16 @@ var portfolioItemClick = function() {
 			$('#portfolio-single-holder > div').remove();
 		} 
 
-		TweenMax.to('.loader-portfolio-wrap', 1, { top: '-50px', autoAlpha: 1, display: 'block', ease: Power4.easeOut });
+		TweenMax.to('.loader-portfolio-wrap', 0.85, { top: '-50px', autoAlpha: 1, display: 'block', ease: Power4.easeOut });
 
 		$('html, body').animate({
     	scrollTop: $('#portfolio-section').offset().top - 50
-		}, 700, 'easeInOutExpo', function() {
+		}, 560, 'easeInOutExpo', function() {
 		});
 		
 		setTimeout(function(){
 			loadPortfolioSinglePage(id, href);
-		}, 100);
+		}, 80);
 
 		e.preventDefault();
 
@@ -503,12 +503,12 @@ var portfolioItemClick = function() {
 		setTimeout(function(){
 			$('html, body').animate({
 	    	scrollTop: $('#portfolio-section').offset().top - 50
-			}, 700, 'easeInOutExpo');
-		}, 200);
+			}, 560, 'easeInOutExpo');
+		}, 160);
 
 		TweenMax.set('.portfolio-wrapper', { visibility: 'visible', height: 'auto' });
-		TweenMax.to('.portfolio-single-inner', 1, { marginTop: '50px', opacity: 0,  display: 'none', onComplete() {
-			TweenMax.to('.portfolio-wrapper', 1, { marginTop: '0px', autoAlpha: 1, position: 'relative' });
+		TweenMax.to('.portfolio-single-inner', 0.85, { marginTop: '50px', opacity: 0,  display: 'none', onComplete() {
+			TweenMax.to('.portfolio-wrapper', 0.85, { marginTop: '0px', autoAlpha: 1, position: 'relative' });
 
 		} });
 		
@@ -517,8 +517,8 @@ var portfolioItemClick = function() {
 
 $(document).ajaxStop(function(){
 	setTimeout(function(){
-		TweenMax.to('.loader-portfolio-wrap', 1, { top: '0px', autoAlpha: 0, ease: Power4.easeOut });	
-	}, 400);
+		TweenMax.to('.loader-portfolio-wrap', 0.85, { top: '0px', autoAlpha: 0, ease: Power4.easeOut });	
+	}, 320);
 });
 
 var loadPortfolioSinglePage = function(id, href) {
@@ -527,7 +527,7 @@ var loadPortfolioSinglePage = function(id, href) {
 		type: 'GET',
 		success: function(html) {
 
-			TweenMax.to('.portfolio-wrapper', 1, { marginTop: '50px', autoAlpha: 0, visibility: 'hidden', onComplete() {
+			TweenMax.to('.portfolio-wrapper', 0.85, { marginTop: '50px', autoAlpha: 0, visibility: 'hidden', onComplete() {
 				TweenMax.set('.portfolio-wrapper', { height: 0 });
 			} })
 
@@ -546,11 +546,11 @@ var loadPortfolioSinglePage = function(id, href) {
 
 			setTimeout(function() {
 				TweenMax.set('.portfolio-single-inner', { marginTop: '100px', autoAlpha: 0, display: 'none' });
-				TweenMax.to('.portfolio-single-inner', .5, { marginTop: '0px', autoAlpha: 1, display: 'block', onComplete() {
+				TweenMax.to('.portfolio-single-inner', .42, { marginTop: '0px', autoAlpha: 1, display: 'block', onComplete() {
 
-					TweenMax.to('.loader-portfolio-wrap', 1, { top: '0px', autoAlpha: 0, ease: Power4.easeOut });	
+					TweenMax.to('.loader-portfolio-wrap', 0.85, { top: '0px', autoAlpha: 0, ease: Power4.easeOut });	
 				} });
-			}, 700 );
+			}, 560 );
 		}
 	});
 
@@ -694,7 +694,7 @@ var animateReveal = function() {
 
 			setTimeout(function() {
 				tl
-					.fromTo(cover, 2, { skewX: 0 }, { xPercent: 101, transformOrigin: "0% 100%", ease:Expo.easeInOut })
+					.fromTo(cover, 1.6, { skewX: 0 }, { xPercent: 101, transformOrigin: "0% 100%", ease:Expo.easeInOut })
 			}, revealNum * 0);
 			
 			var scene = new ScrollMagic.Scene({
@@ -730,9 +730,9 @@ var animateReveal = function() {
 			setTimeout(function() {
 
 				tl2
-					.to(cover, 1, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
+					.to(cover, 0.85, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
 						tl2.set(revealContent, { x: 0 });
-						tl2.to(cover, 1, { marginLeft: '102%', ease:Expo.easeInOut });
+						tl2.to(cover, 0.85, { marginLeft: '102%', ease:Expo.easeInOut });
 					} } )
 			}, heroNum * 0 );
 

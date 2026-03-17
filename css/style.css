@@ -3866,6 +3866,32 @@ html:not(.light-theme) figure.dotted-bg.about-figure .about-photo {
   object-position: center top;
 }
 
+#about-section figure.dotted-bg.about-figure {
+  -webkit-transition: -webkit-transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), -webkit-box-shadow 0.45s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+#about-section figure.dotted-bg.about-figure .about-photo {
+  -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), -webkit-filter 0.35s ease;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.35s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  #about-section figure.dotted-bg.about-figure:hover {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+
+  #about-section figure.dotted-bg.about-figure:hover .about-photo {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-filter: saturate(1.05);
+    filter: saturate(1.05);
+  }
+}
+
 html.light-theme figure.dotted-bg.about-figure:before {
   display: none;
 }
