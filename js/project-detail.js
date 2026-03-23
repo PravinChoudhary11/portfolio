@@ -64,7 +64,7 @@
       ]
     },
     "memory-allocation-visualizer": {
-      title: "Memory Allocation Visualizer",
+      title: "Real Time Memory Tracker",
       subtitle: "Python, Tkinter, Matplotlib, NumPy",
       liveUrl: "#",
       sourceUrl: "https://github.com/PravinChoudhary11/memory-allocation-tracker",

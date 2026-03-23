@@ -3,6 +3,7 @@
     { file: "sections/about.html", target: "about-container" },
     { file: "sections/skills.html", target: "skills-container" },
     { file: "sections/projects.html", target: "projects-container" },
+    { file: "sections/training.html", target: "training-container" },
     { file: "sections/certificates.html", target: "certificates-container" },
     { file: "sections/education.html", target: "education-container" },
     { file: "sections/contact.html", target: "contact-container" }

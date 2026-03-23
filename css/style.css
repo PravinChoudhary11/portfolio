@@ -2107,6 +2107,52 @@ figure.dotted-bg:before {
   padding: 10px 18px;
 }
 
+.training-card-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 22px;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+}
+
+.training-preview {
+  margin-bottom: 0;
+  height: 220px;
+}
+
+.training-content h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.training-meta {
+  margin-bottom: 8px;
+}
+
+.training-grade {
+  font-weight: 700;
+  color: #fff;
+}
+
+.training-subtitle {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .06rem;
+  text-transform: uppercase;
+  margin: 14px 0 10px;
+}
+
+.training-points {
+  margin: 0 0 16px;
+  padding-left: 18px;
+}
+
+.training-points li {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 #education-section .section-heading-wrap {
   margin-bottom: 55px !important;
 }
@@ -2543,6 +2589,24 @@ figure.dotted-bg:before {
   .certificate-preview {
     height: 150px;
     margin-bottom: 12px;
+  }
+
+  .training-card-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .training-preview {
+    height: 180px;
+  }
+
+  .training-content h3 {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .training-subtitle {
+    font-size: 14px;
   }
 
   .skills-modern-panel {
@@ -4268,8 +4332,11 @@ html.light-theme .gsap-reveal-img .reveal-wrap .cover {
 
 @media (max-width: 767.98px) {
   #journal-section .certificate-preview,
+  #training-section .certificate-preview,
   html.light-theme #journal-section .certificate-preview,
-  html:not(.light-theme) #journal-section .certificate-preview {
+  html.light-theme #training-section .certificate-preview,
+  html:not(.light-theme) #journal-section .certificate-preview,
+  html:not(.light-theme) #training-section .certificate-preview {
     background-image: image-set(
       url("../images/certificate-img.webp") type("image/webp"),
       url("../images/certificate-img.png") type("image/png")
